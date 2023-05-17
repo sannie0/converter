@@ -2,13 +2,38 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter1="clr-namespace:converter"
-             x:Class="converter.MainPage"
-             >
+             x:Class="converter.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+        </Style>
+        
+        
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <converter1:PersonViewModel/>
     </ContentPage.BindingContext>
+    
     <StackLayout VerticalOptions="Start">
-         <Label Text="Конвертер валют" FontAttributes="Bold" FontSize="30" Margin="80, 0, 0, 0"></Label>
+        <Label Text="Конвертер валют" FontAttributes="Bold" FontSize="30" Margin="80, 0, 0, 0"></Label>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <DatePicker Grid.Column="0" Format="dd/MM/yyyy"
+                                Date="{Binding SelectedDate}"></DatePicker>
+            <Image Grid.Column="1" Source="calendar.png" HeightRequest="30" WidthRequest="30"></Image>
+            
+        </Grid>
+        <Label Text="{Binding HeaderText}"></Label>
+        <Label></Label>
+        <Label></Label>
         <StackLayout VerticalOptions="Center">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -23,27 +48,21 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Picker Grid.Column="0" Grid.Row="0" x:Name="FirstInput" Title="Select Valute" 
+        <Picker Grid.Column="0" Grid.Row="2" x:Name="FirstInput" Title="Select Valute" 
                 ItemsSource="{Binding ValutesList}"
                 SelectedItem="{Binding FirstValute}">
         </Picker>
-        <Entry Grid.Column="1" Grid.Row="0"
+        <Entry Grid.Column="1" Grid.Row="2"
                Placeholder="Введите значение"
                Text="{Binding ValueInput, TargetNullValue=''}"></Entry>
-        <Picker Grid.Column="0" Grid.Row="2" x:Name="SecondInput" Title="Select Valute" 
+        <Picker Grid.Column="0" Grid.Row="4" x:Name="SecondInput" Title="Select Valute" 
                 ItemsSource="{Binding ValutesList}"
                 SelectedItem="{Binding SecondValute}">
         </Picker>
-        <Label Grid.Column="1" Grid.Row="2" Text="{Binding Conversion}"/>
-        <DatePicker Grid.Column="0" Grid.Row="4" Format="MM/dd/yyyy"
-                    Date="{Binding SelectedDate}"></DatePicker>
-        <Image Grid.Row="4" Grid.Column="1" Source="calendar.png"
-            HeightRequest="30"
-            WidthRequest="30">
-        </Image>
+        <Label Grid.Column="1" Grid.Row="4" Text="{Binding Conversion}"/>
         
         
-    </Grid>
+        </Grid>
         </StackLayout>
         <!--<Image Source="calendar.png"
                HeightRequest="30"

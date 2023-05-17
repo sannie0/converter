@@ -23,42 +23,25 @@ public class PersonViewModel:INotifyPropertyChanged
         {
             LoadData(SelectedDate.ToString("yyyy/MM/dd").Replace(".", "/"));
         });
-            //ConvertCommand = new Command(ExecuteConvert);
-    }
-    public double conversion;
-    
-        public double Conversion
-        {
-            get => conversion;
-            set
-            {
-                if (conversion != value)
-                {
-                    conversion = value;
-                    OnPropertyChanged(nameof(Conversion));
-                    ExecuteConvert();
-                }
-            }
-        }
-    private void ExecuteConvert()
-    {
-        if(FirstValute == null || SecondValute == null) return;
-        double conversion = Valuedouble;
-        double result = conversion * (SecondValute.Value / FirstValute.Value);
-        Conversion = result;
     }
 
-    public double Valuedouble
+    public double _valuedouble
     {
         get
         {
             return double.TryParse(_valueinput, out var doubleval) ? doubleval : 0;
         }
     }
-    
-    
+
+    public double? Conversion
+    {
+        get
+        {
+            if (_secondvalute == null || _firstvalute == null) return 0;
+            return (_valuedouble * (FirstValute.Value / SecondValute.Value));
+        }
+    }
     public ICommand LoadDataCommand { get; }
-    //public ICommand ConvertCommand { get; }
     private DateTime _selectedDate = DateTime.Today;
     
     private Valutes _firstvalute;
@@ -72,6 +55,7 @@ public class PersonViewModel:INotifyPropertyChanged
             {
                 _firstvalute = value;
                 OnPropertyChanged(nameof(FirstValute));
+                OnPropertyChanged(nameof(Conversion));
             }
         }
     }
@@ -87,6 +71,7 @@ public class PersonViewModel:INotifyPropertyChanged
             {
                 _secondvalute = value;
                 OnPropertyChanged(nameof(SecondValute));
+                OnPropertyChanged(nameof(Conversion));
             }
         }
     }
@@ -100,9 +85,11 @@ public class PersonViewModel:INotifyPropertyChanged
             if (_valueinput == value) return;
             _valueinput = value;
             OnPropertyChanged(nameof(ValueInput));
-            ExecuteConvert();
+            OnPropertyChanged(nameof(Conversion));
         }
     }
+
+    public string HeaderText => $"Курс на {_selectedDate.ToString("dd.MM.yyyy")}";
     
     public DateTime SelectedDate
     {
@@ -114,7 +101,9 @@ public class PersonViewModel:INotifyPropertyChanged
                 _selectedDate = value;
                 OnPropertyChanged(nameof(SelectedDate));
                 LoadDataCommand.Execute(null);
-                ExecuteConvert();
+                OnPropertyChanged(nameof(Conversion));
+                OnPropertyChanged(nameof(HeaderText));
+
             }
         }
     }
@@ -147,7 +136,7 @@ public class PersonViewModel:INotifyPropertyChanged
             Console.WriteLine(e);
             throw;
         }
-        ExecuteConvert();
+        //OnPropertyChanged(nameof(Conversion));
         FirstValute = ValutesList[findex];
         SecondValute = ValutesList[sindex];
     }
