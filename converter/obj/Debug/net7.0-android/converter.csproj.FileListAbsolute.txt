@@ -971,9 +971,4 @@
 /Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/assets/System.Runtime.Extensions.dll
 /Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/assets/System.Runtime.Serialization.Formatters.dll
 /Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/assets/System.Xml.dll
-/Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/assets/converter 2.dll
-/Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/assets/converter 3.dll
 /Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/resizetizer/r/drawable/calendar.png
-/Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/assets/converter 4.dll
-/Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/bin/classes 3.dex
-/Users/annasemenova/Desktop/mauii/converter/converter/obj/Debug/net7.0-android/android/bin/classes2 3.dex

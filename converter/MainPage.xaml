@@ -19,6 +19,7 @@
     
     <StackLayout VerticalOptions="Start">
         <Label Text="Конвертер валют" FontAttributes="Bold" FontSize="30" Margin="80, 0, 0, 0"></Label>
+        <Label></Label>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>

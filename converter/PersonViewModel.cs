@@ -33,12 +33,12 @@ public class PersonViewModel:INotifyPropertyChanged
         }
     }
 
-    public double? Conversion
+    public double Conversion
     {
         get
         {
             if (_secondvalute == null || _firstvalute == null) return 0;
-            return (_valuedouble * (FirstValute.Value / SecondValute.Value));
+            return (((_valuedouble * FirstValute.Value)/FirstValute.Nominal) / (SecondValute.Value/SecondValute.Nominal));
         }
     }
     public ICommand LoadDataCommand { get; }
