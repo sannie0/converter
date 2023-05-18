@@ -131,10 +131,14 @@ public class PersonViewModel:INotifyPropertyChanged
                 ValutesList.Add(i);
             }
         }
+
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            DateTime tempDate = _selectedDate;
+            _selectedDate = tempDate.AddDays(-1);
+            OnPropertyChanged(nameof(SelectedDate));
+            OnPropertyChanged(nameof(HeaderText));
+            LoadData(SelectedDate.ToString("yyyy/MM/dd").Replace(".", "/"));
         }
         //OnPropertyChanged(nameof(Conversion));
         FirstValute = ValutesList[findex];
